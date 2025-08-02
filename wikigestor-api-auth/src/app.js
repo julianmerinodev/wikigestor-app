@@ -1,12 +1,15 @@
+// src/app.js
 const express = require('express');
-
 const app = express();
+const authRoutes = require('./routes/auth.routes');
+const setupSwagger = require('./docs/swagger');
 
 app.use(express.json());
 
-// prueba
-app.get('/', (req, res) => {
-  res.send('Hola!');
-});
+app.use('/api/auth', authRoutes);
+
+// Swagger docs
+setupSwagger(app);
+
 
 module.exports = app;
