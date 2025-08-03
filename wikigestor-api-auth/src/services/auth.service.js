@@ -1,6 +1,8 @@
 // src/services/auth.service.js
+require('dotenv').config();
 const bcrypt = require('bcrypt');
 const Usuario = require('../models/usuario.model');
+const jwt = require('jsonwebtoken');
 
 class AuthService {
   static async registrarUsuario(data) {
@@ -22,6 +24,38 @@ class AuthService {
     });
     return usuario;
   }
+
+  static async loginUsuario({ correo, contrasena }) {
+    const usuario = await Usuario.findOne({ where: { correo } });
+    if (!usuario) throw new Error('Correo o contraseña incorrectos');
+
+    const match = await bcrypt.compare(contrasena, usuario.contrasena);
+    if (!match) throw new Error('Correo o contraseña incorrectos');
+
+    const payload = {
+      id: usuario.id,
+      correo: usuario.correo,
+      nombre: usuario.nombre,
+    };
+
+    const token = this.generarToken(payload);
+
+    const { contrasena: _, ...usuarioResponse } = usuario.toJSON();
+
+    return {
+        token,
+        usuario: usuarioResponse
+    };
+  }
+
+  //Generacion de token jwt
+  static generarToken(payload) {
+    return jwt.sign(payload, process.env.JWT_SECRET, {
+      expiresIn: process.env.JWT_EXPIRE,
+    });
+  }
 }
+
+
 
 module.exports = AuthService;
