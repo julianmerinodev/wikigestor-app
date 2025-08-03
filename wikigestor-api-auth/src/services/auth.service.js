@@ -6,7 +6,7 @@ const jwt = require('jsonwebtoken');
 
 class AuthService {
   static async registrarUsuario(data) {
-    console.log("Entro al authService con datos:", data);
+    // console.log("Entro al authService con datos:", data);
     const { nombre, apellidoPaterno, apellidoMaterno, correo, contrasena } = data;
 
     const existe = await Usuario.findOne({ where: { correo } });
