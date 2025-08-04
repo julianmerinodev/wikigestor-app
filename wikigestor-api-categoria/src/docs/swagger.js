@@ -13,11 +13,11 @@ const options = {
       version: '1.0.0',
       description: 'Microservicio de categorías - WikiGestor',
     },
-    servers: [
-      {
-        url: `http://localhost:${PORT}`,
-      },
-    ],
+    // servers: [
+    //   {
+    //     url: `http://localhost:${PORT}`,
+    //   },
+    // ],
   },
   apis: ['./src/routes/*.js'], // Lee los comentarios en las rutas
 };
