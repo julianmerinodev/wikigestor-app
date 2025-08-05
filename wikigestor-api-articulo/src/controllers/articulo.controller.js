@@ -10,7 +10,7 @@ class ArticuloController {
       res.status(201).json(
         response({
           success: true,
-          message: "artículo registrado correctamente",
+          message: "Artículo registrado correctamente",
           statusCode: 201
         })
       );
