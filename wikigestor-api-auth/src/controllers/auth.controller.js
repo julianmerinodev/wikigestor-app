@@ -12,7 +12,7 @@ class AuthController {
       const { contrasena, ...usuarioData } = usuario.toJSON();
       res.status(201).json(apiResponse({
       success: true,
-      message: 'Usuario logueado correctamente',
+      message: 'Usuario registrado correctamente',
       statusCode: 201,
     }));
       
