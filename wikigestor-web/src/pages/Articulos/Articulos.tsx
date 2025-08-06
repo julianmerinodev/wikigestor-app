@@ -130,7 +130,7 @@ return (
         className="bg-green-600 text-white text-sm sm:text-base px-3 sm:px-4 py-2 rounded hover:bg-green-700 transition"
         onClick={handleAbrirModal}
       >
-        + Agregar artículo
+        + Agregar
       </button>
     </div>
 
@@ -139,40 +139,48 @@ return (
     ) : articulos.length === 0 ? (
       <p className="text-gray-500">No hay artículos registrados.</p>
     ) : (
-      <div className="overflow-x-auto">
-        <table className="w-full text-left table-auto min-w-[600px]">
-          <thead className="bg-gray-100 text-gray-700 text-sm sm:text-base">
-            <tr>
-              <th className="p-3 sm:p-4 border-b">Título</th>
-              <th className="p-3 sm:p-4 border-b">Contenido</th>
-              <th className="p-3 sm:p-4 border-b">Categoría</th>
-              <th className="p-3 sm:p-4 border-b">Acciones</th>
-            </tr>
-          </thead>
-          <tbody className="text-gray-700 text-sm sm:text-base">
-            {articulos.map((articulo) => (
-              <tr key={articulo.id} className="border-t hover:bg-gray-50 transition">
-                <td className="p-3 sm:p-4">{articulo.titulo}</td>
-                <td className="p-3 sm:p-4">{articulo.contenido}</td>
-                <td className="p-3 sm:p-4">{articulo.categoria.nombre}</td>
-                <td className="p-3 sm:p-4 space-x-2">
-                  <button
-                    className="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 transition"
-                    onClick={() => handleEditar(articulo)}
-                  >
-                    Editar
-                  </button>
-                  <button
-                    className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 transition"
-                    onClick={() => handleEliminar(articulo.id)}
-                  >
-                    Eliminar
-                  </button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+      <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
+       <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+      <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+        <tr>
+          <th scope="col" className="px-6 py-3">Título</th>
+          <th scope="col" className="px-6 py-3">Contenido</th>
+          <th scope="col" className="px-6 py-3">Categoría</th>
+          <th scope="col" className="px-6 py-3 text-right">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        {articulos.map((articulo) => (
+          <tr
+            key={articulo.id}
+            className="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
+          >
+            <th
+              scope="row"
+              className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+            >
+              {articulo.titulo}
+            </th>
+            <td className="px-6 py-4">{articulo.contenido}</td>
+            <td className="px-6 py-4">{articulo.categoria.nombre}</td>
+            <td className="px-6 py-4 text-right space-x-2">
+              <button
+                onClick={() => handleEditar(articulo)}
+                className="text-blue-600 dark:text-blue-500 hover:underline"
+              >
+                Editar
+              </button>
+              <button
+                onClick={() => handleEliminar(articulo.id)}
+                className="text-red-600 dark:text-red-500 hover:underline"
+              >
+                Eliminar
+              </button>
+            </td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
       </div>
     )}
 

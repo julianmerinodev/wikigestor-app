@@ -37,6 +37,7 @@ export default function Sidebar({ isOpen, toggleSidebar }: SidebarProps) {
               }`}
             >
               {item.name}
+              
             </Link>
           ))}
         </nav>

@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getCategorias } from '../../services/CategoriaService/CategoriaService';
 import { getArticulos } from '../../services/ArticuloService/ArticuloService';
+import { Folder, FileText, ListOrdered, Layers } from 'lucide-react';
 
 export default function Home() {
   const [categorias, setCategorias] = useState([]);
@@ -11,7 +12,10 @@ export default function Home() {
   useEffect(() => {
     const cargarResumen = async () => {
       try {
-        const [catRes, artRes] = await Promise.all([getCategorias(), getArticulos()]);
+        const [catRes, artRes] = await Promise.all([
+          getCategorias(),
+          getArticulos(),
+        ]);
         setCategorias(catRes.data.data);
         setArticulos(artRes.data.data);
       } catch (error) {
@@ -23,35 +27,66 @@ export default function Home() {
 
   return (
     <div className="p-6">
-      <h1 className="text-2xl font-bold text-gray-800 mb-4">Bienvenido a WikiGestor</h1>
-      <p className="text-gray-600 mb-6">Gestión de módulos</p>
+      <h1 className="text-3xl font-bold text-gray-800 mb-2">
+        Bienvenido a WikiGestor
+      </h1>
+      <p className="text-gray-600 mb-6 text-lg">
+        Administra tus categorías y artículos fácilmente
+      </p>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+      {/* Tarjetas de gestión */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
         <div
-          className="p-4 bg-white rounded-xl shadow hover:shadow-md transition cursor-pointer"
           onClick={() => navigate('/categorias')}
+          className="p-6 bg-white rounded-xl shadow-md hover:shadow-lg transition-all border border-gray-100 cursor-pointer flex items-center gap-4"
         >
-          <h2 className="text-xl font-semibold text-gray-700 mb-2">Gestionar Categorías</h2>
-          <p className="text-gray-500">Crea, edita o elimina categorías.</p>
+          <Folder size={40} className="text-indigo-500" />
+          <div>
+            <h2 className="text-xl font-semibold text-gray-800">
+              Gestionar Categorías
+            </h2>
+            <p className="text-gray-500 text-sm">
+              Crea, edita o elimina categorías de conocimiento.
+            </p>
+          </div>
         </div>
 
         <div
-          className="p-4 bg-white rounded-xl shadow hover:shadow-md transition cursor-pointer"
           onClick={() => navigate('/articulos')}
+          className="p-6 bg-white rounded-xl shadow-md hover:shadow-lg transition-all border border-gray-100 cursor-pointer flex items-center gap-4"
         >
-          <h2 className="text-xl font-semibold text-gray-700 mb-2">Gestionar Artículos</h2>
-          <p className="text-gray-500">Agrega o edita artículos.</p>
+          <FileText size={40} className="text-teal-500" />
+          <div>
+            <h2 className="text-xl font-semibold text-gray-800">
+              Gestionar Artículos
+            </h2>
+            <p className="text-gray-500 text-sm">
+              Administra el contenido y los artículos registrados.
+            </p>
+          </div>
         </div>
       </div>
 
-      <div className="grid grid-cols-2 gap-4">
-        <div className="bg-green-100 text-green-800 p-4 rounded-xl shadow">
-          <p className="text-sm">Categorías registradas</p>
-          <h3 className="text-2xl font-bold">{categorias.length}</h3>
+      {/* Métricas */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+        <div className="bg-green-50 p-5 rounded-xl shadow flex items-center gap-4">
+          <ListOrdered size={32} className="text-green-600" />
+          <div>
+            <p className="text-sm text-green-800">Categorías registradas</p>
+            <h3 className="text-2xl font-bold text-green-900">
+              {categorias.length}
+            </h3>
+          </div>
         </div>
-        <div className="bg-blue-100 text-blue-800 p-4 rounded-xl shadow">
-          <p className="text-sm">Artículos registrados</p>
-          <h3 className="text-2xl font-bold">{articulos.length}</h3>
+
+        <div className="bg-blue-50 p-5 rounded-xl shadow flex items-center gap-4">
+          <Layers size={32} className="text-blue-600" />
+          <div>
+            <p className="text-sm text-blue-800">Artículos registrados</p>
+            <h3 className="text-2xl font-bold text-blue-900">
+              {articulos.length}
+            </h3>
+          </div>
         </div>
       </div>
     </div>

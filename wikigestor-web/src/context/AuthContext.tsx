@@ -23,11 +23,16 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     setIsAuthenticated(true);
   };
 
+//   const saveCurrentUser=(user: string) =>{
+//     localStorage.setItem('currentUser', user);
+//     setIsAuthenticated(true);
+//   }
   const logout = () => {
     localStorage.removeItem('token');
-    localStorage.removeItem('currentUser');
+    // localStorage.removeItem('currentUser');
     setIsAuthenticated(false);
   };
+  
 
   return (
     <AuthContext.Provider value={{ isAuthenticated, login, logout }}>
