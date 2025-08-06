@@ -9,12 +9,13 @@ const app = express();
 
 app.use(express.json());
 
+
 // Documentación Swagger
 setupSwagger(app);
 
 // Configuración de CORS
 app.use(cors({
-  origin: 'http://localhost:5173',
+  origin: '*',
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   credentials: true
 }));
