@@ -4,12 +4,18 @@ const app = express();
 const authRoutes = require('./routes/auth.routes');
 const setupSwagger = require('./docs/swagger');
 const cors = require('cors');
+const SERVER = process.env.SERVER;
+const PORT = process.env.PORT;
 
 app.use(express.json());
 
+
+app.get('/health',(req,res) => {
+    res.status(200).send('Ok');
+})
 // Configuración  CORS
 app.use(cors({
-  origin: 'http://localhost:5173', //server del app de frontend
+ origin:  '*',
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   credentials: true
 }));
