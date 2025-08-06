@@ -13,7 +13,7 @@ setupSwagger(app);
 
 // Configuración básica de CORS
 app.use(cors({
-  origin: 'http://localhost:5173', //server del app de frontend
+  origin: '*', //server del app de frontend
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   credentials: true
 }));
