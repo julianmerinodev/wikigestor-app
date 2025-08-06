@@ -25,7 +25,6 @@ WikiGestor está compuesto por los siguientes proyectos:
 - SQL Server (local o en la nube)
 
 ---
-
 ## 🛠️ Instalación general
 
 Clona el repositorio:
@@ -44,22 +43,14 @@ wikigestor-web/.env
 
 ```
 ---
-📦 Estructura del proyecto
-wikigestor-app/
-├── frontend/                    # Frontend (React + Vite)
-├── wikigestor-api-auth/        # Microservicio de autenticación
-├── wikigestor-api-articulo/    # Microservicio de artículos
-├── wikigestor-api-categoria/   # Microservicio de categorías
-└── README.md                   # Este archivo
----
-▶️ Consulta los README.md de cada proyecto para más detalles de como funciona cada uno.
-wikigestor-api-auth/README.md    
-wikigestor-api-articulo/README.md    
-wikigestor-api-categoria/README.md    
-wikigestor-web/README.md    
+## ▶️ Consulta los README.md de cada proyecto para más detalles de como funciona cada uno.
+- wikigestor-api-auth/README.md    
+- ikigestor-api-articulo/README.md    
+- wikigestor-api-categoria/README.md    
+- wikigestor-web/README.md    
 
 
-📄 Documentación Swagger
+## 📄 Documentación Swagger
 Cada microservicio expone su documentación Swagger, puedes revisar más a detalle llendo al README.md ahí trae más información 
 acerca de cada uno.
 
